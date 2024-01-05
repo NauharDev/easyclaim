@@ -53,8 +53,23 @@ export default function InitiateClaim({ params }: { params: { uid: string } }) {
     }
 
     function runOcr() {
-        files.forEach((file: File) => {
-            
+        files.forEach(async (file: File) => {
+            console.log("uploading")
+            try {
+                const data: FormData = new FormData();
+                data.append("file", file as Blob);
+                const response: Response = await fetch(
+                    "/claimant/key-value", 
+                    {
+                        method: "POST", 
+                        body: data
+                    }
+                )
+                const res = response.json();
+                console.log(res);
+            } catch(e) {
+                console.error("could not run OCR for some reason");
+            }
         })
     }
     
@@ -134,6 +149,10 @@ export default function InitiateClaim({ params }: { params: { uid: string } }) {
             </form>
             <button onClick={uploadFile}>
                 submit file to S3 storage
+            </button>
+            <div className="w-5"></div>
+            <button onClick={runOcr}>
+                run ocr on file
             </button>
             <DropDown></DropDown>
             <div hidden={!fileNotFound}>please select a file</div>
