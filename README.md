@@ -22,8 +22,6 @@ _______
   This project was made as part of the <em><b>Technology Leadership Initative's</b></em> integrated-industry project at the <em><b>University of Toronto</b></em>.
 </div>
 
-<h3>View the deployed project <a href="https://easyclaim.vercel.app"> here </a> </h3>
-
 <hr>
 
 <div>
